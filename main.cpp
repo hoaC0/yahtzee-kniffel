@@ -1,6 +1,8 @@
 #include <iostream>
 #include <conio.h> // _getch() funktion
 
+#include "dice.cpp"
+
 
 int main () {
 

@@ -1,15 +1,18 @@
 #include <iostream>
 #include <conio.h> // _getch() funktion
 
-#include "dice.cpp"
+void menu();
 
-
-int main () {
+int main() {
+    menu();
+    return 0;
+}
+void menu() {
 
     std::cout << "\n                           \tWillkommen bei Kniffel!\n";
     std::cout << "\t--------------------------------------------------------------------------\n\t";
     std::cout << "|\t                                                                 |\n";
-    std::cout << "\t|\t ( 1 ) Kniffel spiele\t                                         |\n";
+    std::cout << "\t|\t ( 1 ) Kniffel spielen\t                                         |\n";
     std::cout << "\t|\t                                                                 |\n";
     std::cout << "\t|\t ( 2 ) Anzahl der Spieler definieren\t                         |\n";
     std::cout << "\t|\t                                                                 |\n";
@@ -43,5 +46,5 @@ int main () {
             
             break;
     }
-    return 0;
+    
 }

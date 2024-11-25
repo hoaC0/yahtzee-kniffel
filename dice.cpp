@@ -1,9 +1,10 @@
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
+#include <ctime> // random numbers
 #include <vector>
 #include <conio.h> // _getch() funktion
 #include <algorithm>  // Für std::find
+#include <windows.h> // sleep/delay
 
 //Anzahl Wuerfel
 const int num_Dice = 5;
@@ -107,9 +108,17 @@ void rollDice1() {
         std::cout << i << " ";
         options.push_back(i);
     }
+
     std::cout << std::endl;
-    std::cout << "Du hast die Nummern...\n\n" << dice[0] << "\n" << dice[1] << "\n" << dice[2] << "\n" << dice[3] << "\n" << dice[4] << "\n" << "\n\n...gewuerfelt\n";
-    std::cout << "Moechtest du nochmal wuerfeln?\n\n";
+    std::cout << "Du hast die Nummern...\n\n";
+    Sleep(1000); // 1000ms = 1s
+    for (int i = 0; i < 5; i++) {
+        std::cout << dice[i] << "\n";
+        Sleep(300); //300ms = 0.3s
+    }
+    Sleep(300); // 0.3s
+    std::cout << "\n...gewuerfelt\n\n";
+    Sleep(1000); // 1s
 
     //wenn von einer zahl mehr als einmal
     int W1Anzahl = W1.size();
@@ -147,42 +156,106 @@ void rollDice1() {
         W6Val = true;
     }
 
+
     if (W1Val == true || W2Val == true || W3Val == true || W4Val == true || W5Val == true || W6Val == true) {
+
+        std::cout << "Welche Wuerfel moechtest du neu wuerfeln?\n";
+        Sleep(1500); // 1.5s
+        std::cout << "( 1 ) Wuerfel: " <<dice[0] << "\n( 2 ) Wuerfel: " << dice[1] << "\n( 3 ) Wuerfel: " << dice[2] << "\n( 4 ) Wuerfel: " << dice[3] << "\n( 5 ) Wuerfel: " << dice[4] << "\n\n( C ) Alle Wuerfel neu wuerfeln" <<"\n\n( X ) Auswahl beenden\n\n";
+        bool LoopOFF = false;
         
-        while (!options.empty()) {
-            std::cout << "Welche Wuerfel moechtest du behalten?\n";
-            char choice;
-            std::cin >> choice;
+        while (!options.empty() && !LoopOFF) {
+            char choice = _getch(); // ohne "std::cin >> choice;", da sonst 2 mal eintippen muss
+            
 
             switch (choice) {
-                case 'J': // Ja (Option 'J')
-                case 'j': {
-                    // Wenn Ja gewählt wurde, entferne die Option aus der Liste
-                    auto it = std::find(options.begin(), options.end(), 'J');
+                //Wuerfel 1
+                case 49: { 
+                    auto it = std::find(options.begin(), options.end(), dice[0]);
                     if (it != options.end()) {
                         options.erase(it);
-                        std::cout << "\nJa ausgewählt. Du kannst es nicht nochmal wählen." << std::endl;
+                        std::cout << "\nWuerfel ( 1 ) ausgewaehlt. Du kannst es nicht nochmal waehlen." << std::endl;
                     }
                     break;
                 }
-                case 'N': // Nein (Option 'N')
-                case 'n': {
-                    // wenn Nein gewählt wurde, entferne die Option aus der Liste
-                    auto it = std::find(options.begin(), options.end(), 'N');
+                
+                //Wuerfel 2
+                case 50: {
+                    auto it = std::find(options.begin(), options.end(), dice[1]);
                     if (it != options.end()) {
                         options.erase(it);
-                        std::cout << "\nNein ausgewählt. Du kannst es nicht nochmal wählen." << std::endl;
+                        std::cout << "\nWuerfel ( 2 ) ausgewaehlt. Du kannst es nicht nochmal waehlen." << std::endl;
                     }
                     break;
                 }
+
+                //Wuerfel 3
+                case 51: {
+                    auto it = std::find(options.begin(), options.end(), dice[2]);
+                    if (it != options.end()) {
+                        options.erase(it);
+                        std::cout << "\nWuerfel ( 3 ) ausgewaehlt. Du kannst es nicht nochmal waehlen." << std::endl;
+                    }
+                    break;
+                }
+
+                //Wuerfel 4
+                case 52: {
+                    auto it = std::find(options.begin(), options.end(), dice[3]);
+                    if (it != options.end()) {
+                        options.erase(it);
+                        std::cout << "\nWuerfel ( 4 ) ausgewaehlt. Du kannst es nicht nochmal waehlen." << std::endl;
+                    }
+                    break;
+                }
+
+                //Wuerfel 5
+                case 53: {
+                    auto it = std::find(options.begin(), options.end(), dice[4]);
+                    if (it != options.end()) {
+                        options.erase(it);
+                        std::cout << "\nWuerfel ( 5 ) ausgewaehlt. Du kannst es nicht nochmal waehlen." << std::endl;
+                    }
+                    break;
+                }
+
+                //Wuerfel 6
+                case 54: {
+                    auto it = std::find(options.begin(), options.end(), dice[5]);
+                    if (it != options.end()) {
+                        options.erase(it);
+                        std::cout << "\nWuerfel ( 6 ) ausgewaehlt. Du kannst es nicht nochmal waehlen." << std::endl;
+                    }
+                    break;
+                }
+
+                // x = Auswahl beenden
+                case 120: { 
+                    LoopOFF = true;
+                    break;
+                }
+
+                // c = neu wuerfeln ( nur wenn nichts ausgewaehlt wurde )
+                case 99: {
+                    if (options.size() == 5) {
+                        LoopOFF = true;
+                        std::cout << "Alle wuerfel neu wuerfeln" << std::endl;
+                        break;
+                    }
+                    else {
+                    std::cout << "\nUngueltig!" << std::endl;
+                    break;
+                    }
+                }
+
                 default:
                     std::cout << "\nUngueltige Eingabe, versuche es nochmal." << std::endl;
                     break;
             }
-
+        
             // zeigt alle verbleibenden Optionen an
             if (!options.empty()) {    //negiert => wenn nicht leer
-                std::cout << "Verfügbare Optionen: ";
+                std::cout << "Verfuegbare Optionen: ";
                 for (int i : options) {
                     std::cout << i << " ";
                 }
@@ -190,8 +263,11 @@ void rollDice1() {
             }
         }
 
-    std::cout << "Alle Optionen wurden ausgewählt. Programm beendet." << std::endl;
-}
+    std::cout << "Alle Optionen wurden ausgewaehlt. Programm beendet." << std::endl;
+    for (int i : options) {
+        std::cout << i << " ";
+        }
+    }
 }
 
 int rollDice2() {

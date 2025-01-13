@@ -1,0 +1,16 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build kniffel",
+            "type": "shell",
+            "command": "g++ main.cpp spiel.cpp spieler.cpp punktekarte.cpp punkterechner.cpp wuerfel.cpp -o kniffel -std=c++11",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Erstellt das Kniffel-Projekt."
+        }
+    ]
+}

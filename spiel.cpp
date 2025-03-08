@@ -26,7 +26,7 @@ void Spiel::spielen() {
             zeigeWuerfel();
 
             if (wurf < 2) {
-                std::cout << "\nNochmal würfeln? (j/n): ";
+                std::cout << "\nNochmal wuerfeln? (j/n): ";
                 char antwort;
                 std::cin >> antwort;
                 if (antwort == 'j') {
@@ -64,7 +64,7 @@ void Spiel::wuerfelnAlle() {
 }
 
 void Spiel::wuerfelAuswahl() {
-    std::cout << "\nWelche Würfel möchten Sie behalten? (1-5, 0 für fertig): ";
+    std::cout << "\nWelche Wuerfel möchten Sie behalten? (1-5, 0 fuer fertig): ";
     int auswahl;
     for (Wuerfel& w : wuerfel) {
         w.setBehalten(false);
@@ -78,7 +78,7 @@ void Spiel::wuerfelAuswahl() {
 }
 
 void Spiel::zeigeWuerfel() const {
-    std::cout << "\nIhre Würfel: ";
+    std::cout << "\nIhre Wuerfel: ";
     for (int i = 0; i < 5; i++) {
         std::cout << wuerfel[i].getWert() << " ";
     }
@@ -94,7 +94,7 @@ std::array<int, 5> Spiel::getWuerfelWerte() const {
 }
 
 void Spiel::zeigeMoeglichePunkte() const {
-    std::cout << "\nMögliche Punkte:\n";
+    std::cout << "\nMoegliche Punkte:\n";
     auto werte = getWuerfelWerte();
 
     for (int i = 0; i < 13; i++) {
@@ -105,13 +105,13 @@ void Spiel::zeigeMoeglichePunkte() const {
                 case 1: std::cout << "Zweier: "; break;
                 case 2: std::cout << "Dreier: "; break;
                 case 3: std::cout << "Vierer: "; break;
-                case 4: std::cout << "Fünfer: "; break;
+                case 4: std::cout << "Fuenfer: "; break;
                 case 5: std::cout << "Sechser: "; break;
                 case 6: std::cout << "Dreierpasch: "; break;
                 case 7: std::cout << "Viererpasch: "; break;
                 case 8: std::cout << "Full House: "; break;
-                case 9: std::cout << "Kleine Straße: "; break;
-                case 10: std::cout << "Große Straße: "; break;
+                case 9: std::cout << "Kleine Strasse: "; break;
+                case 10: std::cout << "Große Strasse: "; break;
                 case 11: std::cout << "Kniffel: "; break;
                 case 12: std::cout << "Chance: "; break;
             }
@@ -123,7 +123,7 @@ void Spiel::zeigeMoeglichePunkte() const {
 void Spiel::punkteEintragen() {
     int kategorie;
     do {
-        std::cout << "\nIn welche Kategorie möchten Sie die Punkte eintragen? (1-13): ";
+        std::cout << "\nIn welche Kategorie moechten Sie die Punkte eintragen? (1-13): ";
         std::cin >> kategorie;
         kategorie--; // Array beginnt bei 0
     } while (kategorie < 0 || kategorie > 12 ||

@@ -51,17 +51,17 @@ void menu(Spiel& spiel) {
                 break;
 
             case 27: // ESC-Taste
-                std::cout << "\nMenü verlassen...\n";
+                std::cout << "\nMenue verlassen...\n";
                 exitMenu = true;
                 break;
 
             default:
-                std::cout << "\nUngültige Eingabe. Bitte versuchen Sie es erneut.\n";
+                std::cout << "\nUngueltige Eingabe. Bitte versuchen Sie es erneut.\n";
                 break;
         }
 
         if (!exitMenu) {
-            std::cout << "\nDrücken Sie eine beliebige Taste, um fortzufahren...\n";
+            std::cout << "\nDruecken Sie eine beliebige Taste, um fortzufahren...\n";
             _getch();
         }
     }

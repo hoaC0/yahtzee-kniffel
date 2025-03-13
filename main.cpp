@@ -1,20 +1,20 @@
 #include <iostream>
-#include <conio.h> // Für _getch()
+#include <conio.h> // fuer _getch() - erlaubt tastenabfragen ohne enter
 #include "spiel.h"
 
 void menu(Spiel& spiel);
 
 int main() {
-    Spiel spiel;
-    menu(spiel);
+    Spiel spiel;                // erstelle ein neues kniffel-spiel
+    menu(spiel);               // zeige hauptmenue und starte spiel
     return 0;
 }
 
 void menu(Spiel& spiel) {
-    bool exitMenu = false;
+    bool exitMenu = false;     // kontrollflag fuer menuenavigation
 
     while (!exitMenu) {
-        system("cls"); // Bildschirm leeren
+        system("cls");         // bildschirm leeren (windows-spezifisch)
         std::cout << "\n\tWillkommen bei Kniffel!\n";
         std::cout << "\t--------------------------------------------------\n";
         std::cout << "\t| (1) Kniffel spielen                            |\n";
@@ -24,11 +24,11 @@ void menu(Spiel& spiel) {
         std::cout << "\t| (ESC) Menue verlassen                          |\n";
         std::cout << "\t--------------------------------------------------\n\n";
 
-        char choice = _getch();
+        char choice = _getch();  // taste ohne enter lesen
         switch (choice) {
             case '1':
                 if (!spiel.istBeendet()) {
-                    spiel.spielen();
+                    spiel.spielen();        // spiellogik starten
                 } else {
                     std::cout << "\nDas Spiel ist bereits beendet!\n";
                 }
@@ -38,21 +38,21 @@ void menu(Spiel& spiel) {
                 std::string name;
                 std::cout << "\nGeben Sie den Namen des Spielers ein: ";
                 std::cin >> name;
-                spiel.spielerHinzufuegen(name);
+                spiel.spielerHinzufuegen(name);  // neuen spieler erstellen
                 break;
             }
 
             case '3':
-                spiel.speichern();
+                spiel.speichern();          // spielstand speichern
                 break;
 
             case '4':
-                spiel.laden();
+                spiel.laden();          // spielstand laden
                 break;
 
             case 27: // ESC-Taste
                 std::cout << "\nMenue verlassen...\n";
-                exitMenu = true;
+                exitMenu = true;            // menue beenden
                 break;
 
             default:
@@ -62,7 +62,7 @@ void menu(Spiel& spiel) {
 
         if (!exitMenu) {
             std::cout << "\nDruecken Sie eine beliebige Taste, um fortzufahren...\n";
-            _getch();
+            _getch();                      // warten auf tastendruck
         }
     }
 }

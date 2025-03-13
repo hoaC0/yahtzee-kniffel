@@ -9,29 +9,33 @@
 
 class Spiel {
 private:
-    std::vector<Spieler> spieler;
-    std::array<Wuerfel, 5> wuerfel;
-    int aktuellerSpieler;
-    bool spielBeendet;
+    std::vector<Spieler> spieler;       // liste aller spieler
+    std::array<Wuerfel, 5> wuerfel;     // die 5 wuerfel des spiels
+    int aktuellerSpieler;               // index des aktuellen spielers
+    bool spielBeendet;                  // flag ob das spiel beendet ist
 
-    void wuerfelnAlle();
-    void wuerfelAuswahl();
-    void punkteEintragen();
-    void naechsterSpieler();
-    void zeigeWuerfel() const;
-    std::array<int, 5> getWuerfelWerte() const;
-    void zeigeMoeglichePunkte() const;
-    void zeigeSpielstand() const;
-    void speichereSpiel() const;
-    void ladeSpiel();
+    void wuerfelnAlle();                // wirft alle nicht gehaltenen wuerfel neu
+    void wuerfelAuswahl();              // fragt nach wuerfeln, die behalten werden sollen
+    void punkteEintragen();             // traegt punkte in die spielerkarte ein
+    void naechsterSpieler();            // wechselt zum naechsten spieler
+    void zeigeWuerfel() const;          // zeigt aktuelle wuerfelwerte an
+    std::array<int, 5> getWuerfelWerte() const;  // gibt array mit allen wuerfelwerten zurueck
+    void zeigeMoeglichePunkte() const;  // zeigt moegliche punkte fuer aktuelle wuerfelkombination
+    void zeigeSpielstand() const;       // zeigt aktuellen spielstand aller spieler
+    
+    // HINWEIS: namen unterscheiden sich in header und implementation
+    void speichereSpiel() const;        // deklariert, aber heisst in implementation "speichern"
+    void ladeSpiel();                   // deklariert, aber heisst in implementation "laden"
 
 public:
-    Spiel();
-    void spielerHinzufuegen(const std::string& name);
-    void spielen();
-    bool istBeendet() const;
-    void speichern() const;
-    void laden();
+    Spiel();                            // konstruktor - initialisiert neues spiel
+    void spielerHinzufuegen(const std::string& name);  // fuegt neuen spieler hinzu
+    void spielen();                     // startet oder setzt das spiel fort
+    bool istBeendet() const;            // prueft, ob das spiel beendet ist
+    
+    // HINWEIS: diese methoden sollten mit denen im privaten bereich uebereinstimmen
+    void speichern() const;             // speichert den spielstand in datei
+    void laden();                       // laedt den spielstand aus datei
 };
 
 #endif
